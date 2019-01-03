@@ -1,13 +1,13 @@
-
 <!doctype html>
 <html lang="en">
   <head>
+    {% load staticfiles %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Album example · Bootstrap</title>
+    <title>My Blog</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -18,15 +18,15 @@
   <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Carolin Brüderle</a>
+      <a class="navbar-brand" href="{% url 'home' %}">Carolin B</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ml-auto">
-          <a class="nav-item nav-link" href="#">Overview<span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link" href="#">Resume</a>
-          <a class="nav-item nav-link active" href="{{ blog }}">Blog</a>
+          <a class="nav-item nav-link" href="{% url 'home' %}">Overview<span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="{% static 'resume.pdf' %}">Resume</a>
+          <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
         </div>
       </div>
       </nav>
@@ -42,7 +42,7 @@
         <hr />
 
     {% for post in posts.all %}
-        <a href=""><h3>{{ post.title }}</h3></a>
+        <a href="{% url 'detail' post.id %}"><h3>{{ post.title }}</h3></a>
         <p>{{ post.date_format }}</p>
         <img class="img-thumbnail" width="160" height="auto" src="{{ post.image.url }}" />
         <p>{{ post.summary }}</p>

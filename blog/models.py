@@ -10,7 +10,7 @@ class Blog(models.Model):
         return self.title
 
     def summary(self):
-        bodyPreview = self.body[:100]
+        bodyPreview = self.body[:100] + '...'
         return bodyPreview
 
     def date_format(self):
